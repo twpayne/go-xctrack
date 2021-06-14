@@ -2,14 +2,21 @@ linters:
   enable:
   - asciicheck
   - bodyclose
+  - cyclop
   - deadcode
   - depguard
   - dogsled
   - dupl
+  - durationcheck
   - errcheck
+  - errorlint
   - exhaustive
   - exportloopref
+  - forbidigo
+  - forcetypeassert
   - funlen
+  - gci
+  - gochecknoinits
   - gocognit
   - goconst
   - gocritic
@@ -19,47 +26,70 @@ linters:
   - goerr113
   - gofmt
   - gofumpt
+  - goheader
   - goimports
-  - golint
+  - gomoddirectives
   - gomodguard
   - goprintffuncname
   - gosec
   - gosimple
   - govet
+  - ifshort
+  - importas
   - ineffassign
-  - interfacer
-  - maligned
+  - makezero
   - misspell
   - nakedret
   - nestif
+  - nilerr
   - noctx
   - nolintlint
   - prealloc
+  - predeclared
+  - promlinter
+  - revive
   - rowserrcheck
-  - scopelint
   - sqlclosecheck
   - staticcheck
   - structcheck
   - stylecheck
+  - tagliatelle
   - testpackage
+  - thelper
   - typecheck
   - unconvert
   - unparam
   - unused
   - varcheck
+  - wastedassign
   - whitespace
   disable:
+  - exhaustivestruct
   - gochecknoglobals
   - gomnd
   - lll
+  - maligned
+  - nlreturn
+  - paralleltest
+  - tparallel
+  - wrapcheck
   - wsl
 
 linters-settings:
+  forbidigo:
+    forbid:
+    - ^fmt\.Print.*$
+    - ^ioutil\..*$
+    - ^os\.(DirEntry|FileInfo|FileMode|Is.*|Mode.*)$
+  gofumpt:
+    extra-rules: true
   goimports:
     local-prefixes: github.com/twpayne/go-xctrack
+  misspell:
+    locale: US
 
 issues:
   exclude-rules:
   - linters:
-    - scopelint
-    path: "_test\\.go"
+    - goerr113
+    text: "do not define dynamic errors, use wrapped static errors instead"
