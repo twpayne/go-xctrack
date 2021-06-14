@@ -173,7 +173,7 @@ var (
 
 // MarshalJSON implements encoding/json.Marshaler.
 func (z *QRCodeTurnpointZ) MarshalJSON() ([]byte, error) {
-	var buf []byte
+	buf := make([]byte, 0, 64)
 	buf = append(buf, '"')
 	buf = polyline.EncodeInt(buf, int(math.Round(1e5*z.Lon)))
 	buf = polyline.EncodeInt(buf, int(math.Round(1e5*z.Lat)))
@@ -281,6 +281,7 @@ func (t *Task) QRCodeTask() *QRCodeTask {
 
 func (q *QRCodeTask) String() (string, error) {
 	sb := &strings.Builder{}
+	sb.Grow(4096)
 	sb.WriteString(QRCodeScheme)
 	if err := json.NewEncoder(sb).Encode(q); err != nil {
 		return "", err
