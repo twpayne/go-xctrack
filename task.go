@@ -27,7 +27,7 @@ const (
 // An EarthModel is an Earth model.
 type EarthModel string
 
-// Earh models.
+// Earth models.
 const (
 	EarthModelWGS84     EarthModel = "WGS84"
 	EarthModelFAISphere EarthModel = "FAI_SPHERE"
