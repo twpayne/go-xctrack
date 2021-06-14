@@ -2,7 +2,7 @@ package xctrack_test
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -72,14 +72,14 @@ func TestTask(t *testing.T) {
 }
 
 func TestTestData(t *testing.T) {
-	infos, err := ioutil.ReadDir("testdata")
+	dirEntries, err := os.ReadDir("testdata")
 	require.NoError(t, err)
-	for _, info := range infos {
+	for _, info := range dirEntries {
 		if !strings.HasSuffix(info.Name(), xctrack.TaskExtension) {
 			continue
 		}
 		t.Run(info.Name(), func(t *testing.T) {
-			data, err := ioutil.ReadFile(filepath.Join("testdata", info.Name()))
+			data, err := os.ReadFile(filepath.Join("testdata", info.Name()))
 			require.NoError(t, err)
 			_, err = xctrack.ParseTask(data)
 			require.NoError(t, err)
