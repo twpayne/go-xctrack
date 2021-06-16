@@ -1,0 +1,69 @@
+{
+    "taskType": "CLASSIC",
+    "version": 1,
+    "earthModel": "WGS84",
+    "turnpoints": [
+        {
+            "type": "TAKEOFF",
+            "radius": 50,
+            "waypoint": {
+                "name": "SPORTS FIELD - KLEINARL",
+                "lat": 47.273604,
+                "lon": 13.317839,
+                "altSmoothed": 1010
+            }
+        },
+        {
+            "type": "SSS",
+            "radius": 50,
+            "waypoint": {
+                "name": "MOOSKOPF",
+                "lat": 47.292718,
+                "lon": 13.347974,
+                "altSmoothed": 1948
+            }
+        },
+        { 
+            "radius": 50,
+            "waypoint": {
+                "name": "GRAFENBERG",
+                "lat": 47.310069,
+                "lon": 13.273749,
+                "altSmoothed": 1700
+            }
+        },
+        { 
+            "radius": 50,
+            "waypoint": {
+                "name": "HOCHGRÜNDECK",
+                "lat": 47.382008,
+                "lon": 13.273441,
+                "altSmoothed": 1811
+            }
+        },
+        {
+            "type": "ESS",
+            "radius": 50,
+            "waypoint": {
+                "name": "SPORTS FIELD - KLEINARL",
+                "lat": 47.273604,
+                "lon": 13.317839,
+                "altSmoothed": 1010
+            }
+        }
+   ],
+   "sss": {
+       "type": "RACE",
+       "direction": "EXIT",
+       "timeGates": [
+           "08:00:00Z"
+       ]
+   },
+   "takeoff": {
+       "timeOpen": "08:00:00Z",
+       "timeClose": "21:00:00Z"
+   },
+   "goal": {
+       "deadline": "21:00:00Z"
+   }
+}
