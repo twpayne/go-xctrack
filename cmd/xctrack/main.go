@@ -51,7 +51,7 @@ func run() error {
 		return taskToKML(task).WriteIndent(os.Stdout, "", "  ")
 	case "json":
 		return json.NewEncoder(os.Stdout).Encode(task)
-	case "qrcode":
+	case "png":
 		s, err := task.QRCodeTask().String()
 		if err != nil {
 			return err
