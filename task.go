@@ -35,7 +35,7 @@ const (
 
 // A Goal is a goal.
 type Goal struct {
-	Type     GoalType `json:"type"`
+	Type     GoalType `json:"type,omitempty"`
 	Deadline *Time    `json:"deadline,omitempty"`
 }
 
