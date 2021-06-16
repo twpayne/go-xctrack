@@ -2,7 +2,6 @@ linters:
   enable:
   - asciicheck
   - bodyclose
-  - cyclop
   - deadcode
   - depguard
   - dogsled
@@ -62,6 +61,7 @@ linters:
   - wastedassign
   - whitespace
   disable:
+  - cyclop
   - exhaustivestruct
   - gci
   - gochecknoglobals

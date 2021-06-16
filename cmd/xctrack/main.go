@@ -16,7 +16,7 @@ import (
 var format = flag.String("format", "json", "format")
 
 func taskToKML(t *xctrack.Task) kml.Element {
-	var coordinates []kml.Coordinate
+	coordinates := make([]kml.Coordinate, 0, len(t.Turnpoints))
 	for _, turnpoint := range t.Turnpoints {
 		coordinate := kml.Coordinate{
 			Lat: turnpoint.Waypoint.Lat,
