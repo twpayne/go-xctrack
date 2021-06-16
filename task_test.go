@@ -74,12 +74,9 @@ func TestTask(t *testing.T) {
 func TestTestData(t *testing.T) {
 	dirEntries, err := os.ReadDir("testdata")
 	require.NoError(t, err)
-	for _, info := range dirEntries {
-		if !strings.HasSuffix(info.Name(), xctrack.TaskExtension) {
-			continue
-		}
-		t.Run(info.Name(), func(t *testing.T) {
-			data, err := os.ReadFile(filepath.Join("testdata", info.Name()))
+	for _, dirEntry := range dirEntries {
+		t.Run(dirEntry.Name(), func(t *testing.T) {
+			data, err := os.ReadFile(filepath.Join("testdata", dirEntry.Name()))
 			require.NoError(t, err)
 			_, err = xctrack.ParseTask(data)
 			require.NoError(t, err)

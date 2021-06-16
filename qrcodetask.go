@@ -111,8 +111,9 @@ type QRCodeTurnpointZ struct {
 }
 
 var (
-	errExpectedDoubleQuote = errors.New("expected double quote")
-	errTrailingBytes       = errors.New("trailing bytes")
+	errExpectedClosingDoubleQuote = errors.New("expected closing double quote")
+	errExpectedOpeningDoubleQuote = errors.New("expected opening double quote")
+	errTrailingBytes              = errors.New("trailing bytes")
 )
 
 // An errInvalidQRCodeTurnpointZ is an invalid QR code turnpoint Z error.
@@ -189,7 +190,7 @@ func (z *QRCodeTurnpointZ) UnmarshalJSON(value []byte) error {
 	if len(b) == 0 || b[0] != '"' {
 		return &errInvalidQRCodeTurnpointZ{
 			Value: value,
-			Err:   errExpectedDoubleQuote,
+			Err:   errExpectedOpeningDoubleQuote,
 		}
 	}
 	b = b[1:]
@@ -224,7 +225,7 @@ func (z *QRCodeTurnpointZ) UnmarshalJSON(value []byte) error {
 	if len(b) == 0 || b[0] != '"' {
 		return errInvalidQRCodeTurnpointZ{
 			Value: value,
-			Err:   errExpectedDoubleQuote,
+			Err:   errExpectedClosingDoubleQuote,
 		}
 	}
 	b = b[1:]

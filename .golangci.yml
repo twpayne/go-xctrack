@@ -15,7 +15,6 @@ linters:
   - forbidigo
   - forcetypeassert
   - funlen
-  - gci
   - gochecknoinits
   - gocognit
   - goconst
@@ -40,7 +39,6 @@ linters:
   - makezero
   - misspell
   - nakedret
-  - nestif
   - nilerr
   - noctx
   - nolintlint
@@ -65,10 +63,12 @@ linters:
   - whitespace
   disable:
   - exhaustivestruct
+  - gci
   - gochecknoglobals
   - gomnd
   - lll
   - maligned
+  - nestif
   - nlreturn
   - paralleltest
   - tparallel
@@ -93,3 +93,6 @@ issues:
   - linters:
     - goerr113
     text: "do not define dynamic errors, use wrapped static errors instead"
+  - linters:
+    - forbidigo
+    path: ^cmd/xctrack/
