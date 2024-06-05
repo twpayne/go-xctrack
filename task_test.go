@@ -8,8 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
+	"github.com/alecthomas/assert/v2"
 
 	xctrack "github.com/twpayne/go-xctrack"
 )
@@ -53,19 +52,19 @@ func TestTask(t *testing.T) {
 	} {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			b, err := json.Marshal(tc.task)
-			require.NoError(t, err)
+			assert.NoError(t, err)
 			assert.Equal(t, tc.jsonStr, string(b))
 
 			actualQRCodeStr, err := tc.task.QRCodeTask().String()
-			require.NoError(t, err)
+			assert.NoError(t, err)
 			assert.Equal(t, tc.qrCodeStr, strings.TrimSpace(actualQRCodeStr))
 
 			actualTask, err := xctrack.ParseTask([]byte(tc.jsonStr))
-			require.NoError(t, err)
+			assert.NoError(t, err)
 			assert.Equal(t, tc.task, actualTask)
 
 			actualTask, err = xctrack.ParseTask([]byte(tc.qrCodeStr))
-			require.NoError(t, err)
+			assert.NoError(t, err)
 			assert.Equal(t, tc.task, actualTask)
 		})
 	}
@@ -73,13 +72,13 @@ func TestTask(t *testing.T) {
 
 func TestTestData(t *testing.T) {
 	dirEntries, err := os.ReadDir("testdata")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	for _, dirEntry := range dirEntries {
 		t.Run(dirEntry.Name(), func(t *testing.T) {
 			data, err := os.ReadFile(filepath.Join("testdata", dirEntry.Name()))
-			require.NoError(t, err)
+			assert.NoError(t, err)
 			_, err = xctrack.ParseTask(data)
-			require.NoError(t, err)
+			assert.NoError(t, err)
 		})
 	}
 }
