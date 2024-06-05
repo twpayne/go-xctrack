@@ -8,14 +8,14 @@ import (
 	"os"
 
 	"github.com/skip2/go-qrcode"
-	"github.com/twpayne/go-kml"
+	"github.com/twpayne/go-kml/v3"
 
 	"github.com/twpayne/go-xctrack"
 )
 
 var format = flag.String("format", "json", "format")
 
-func taskToKML(t *xctrack.Task) kml.Element {
+func taskToKML(t *xctrack.Task) *kml.KMLElement {
 	coordinates := make([]kml.Coordinate, 0, len(t.Turnpoints))
 	for _, turnpoint := range t.Turnpoints {
 		coordinate := kml.Coordinate{
@@ -25,10 +25,12 @@ func taskToKML(t *xctrack.Task) kml.Element {
 		}
 		coordinates = append(coordinates, coordinate)
 	}
-	return kml.Folder(
-		kml.Placemark(
-			kml.LineString(
-				kml.Coordinates(coordinates...),
+	return kml.KML(
+		kml.Folder(
+			kml.Placemark(
+				kml.LineString(
+					kml.Coordinates(coordinates...),
+				),
 			),
 		),
 	)
