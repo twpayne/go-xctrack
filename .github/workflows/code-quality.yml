@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
       - uses: golangci/golangci-lint-action@a4f60bb28d35aeee14e6880718e0c85ff1882e64
         with:
-          version: v1.40
+          version: v1.59.0

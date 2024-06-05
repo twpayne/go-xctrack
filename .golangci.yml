@@ -2,11 +2,10 @@ linters:
   enable:
   - asciicheck
   - bodyclose
-  - deadcode
-  - depguard
   - dogsled
   - dupl
   - durationcheck
+  - err113
   - errcheck
   - errorlint
   - exhaustive
@@ -21,7 +20,6 @@ linters:
   - gocyclo
   - godot
   - godox
-  - goerr113
   - gofmt
   - gofumpt
   - goheader
@@ -32,7 +30,6 @@ linters:
   - gosec
   - gosimple
   - govet
-  - ifshort
   - importas
   - ineffassign
   - makezero
@@ -48,7 +45,6 @@ linters:
   - rowserrcheck
   - sqlclosecheck
   - staticcheck
-  - structcheck
   - stylecheck
   - tagliatelle
   - testpackage
@@ -57,17 +53,15 @@ linters:
   - unconvert
   - unparam
   - unused
-  - varcheck
   - wastedassign
   - whitespace
   disable:
   - cyclop
-  - exhaustivestruct
+  - depguard
   - gci
   - gochecknoglobals
   - gomnd
   - lll
-  - maligned
   - nestif
   - nlreturn
   - paralleltest
@@ -91,7 +85,7 @@ linters-settings:
 issues:
   exclude-rules:
   - linters:
-    - goerr113
+    - err113
     text: "do not define dynamic errors, use wrapped static errors instead"
   - linters:
     - forbidigo
