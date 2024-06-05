@@ -294,7 +294,7 @@ func (q *QRCodeTask) String() (string, error) {
 func (q *QRCodeTask) Task() *Task {
 	task := &Task{
 		TaskType:   q.TaskType,
-		Version:    TaskVersion,
+		Version:    Version,
 		Turnpoints: make([]*Turnpoint, 0, len(q.Turnpoints)),
 		EarthModel: earthModelValue[q.EarthModel],
 	}

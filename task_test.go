@@ -22,7 +22,7 @@ func TestTask(t *testing.T) {
 		{
 			task: &xctrack.Task{
 				TaskType:   xctrack.TaskTypeClassic,
-				Version:    xctrack.TaskVersion,
+				Version:    xctrack.Version,
 				EarthModel: xctrack.EarthModelWGS84,
 				Turnpoints: []*xctrack.Turnpoint{
 					{

@@ -8,9 +8,9 @@ import (
 
 // Constants.
 const (
-	TaskExtension = ".xctsk"
-	TaskMIMEType  = "application/xctsk"
-	TaskVersion   = 1
+	Extension = ".xctsk"
+	MIMEType  = "application/xctsk"
+	Version   = 1
 )
 
 var timeRegexp = regexp.MustCompile(`\A"(\d\d):(\d\d):(\d\d)Z"\z`)
