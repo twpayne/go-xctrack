@@ -1,6 +1,6 @@
 # go-xctrack
 
-[![GoDoc](https://godoc.org/github.com/twpayne/go-xctrack?status.svg)](https://godoc.org/github.com/twpayne/go-xctrack)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/twpayne/go-xctrack)](https://pkg.go.dev/github.com/twpayne/go-xctrack)
 
 Package xctrack implements [XCTrack](http://xctrack.org/)'s [task
 format](http://xctrack.org/Competition_Interfaces.html).
@@ -14,6 +14,6 @@ Features:
 Additionally, a command line utility in `cmd/xctrack` converts between these
 formats.
 
-## Licence
+## License
 
 MIT
