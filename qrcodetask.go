@@ -36,7 +36,7 @@ const (
 
 // A QRCodeGoal is a QR code goal.
 type QRCodeGoal struct {
-	Deadline *Time          `json:"d,omitempty"`
+	Deadline *TimeOfDay     `json:"d,omitempty"`
 	Type     QRCodeGoalType `json:"t,omitempty"`
 }
 
@@ -60,7 +60,7 @@ const (
 
 // A QRCodeSSS is a QR code start.
 type QRCodeSSS struct {
-	TimeGates []*Time         `json:"g"`
+	TimeGates []*TimeOfDay    `json:"g"`
 	Direction QRCodeDirection `json:"d"`
 	Type      QRCodeSSSType   `json:"t"`
 }

@@ -35,8 +35,8 @@ const (
 
 // A Goal is a goal.
 type Goal struct {
-	Type     GoalType `json:"type,omitempty"`
-	Deadline *Time    `json:"deadline,omitempty"`
+	Type     GoalType   `json:"type,omitempty"`
+	Deadline *TimeOfDay `json:"deadline,omitempty"`
 }
 
 // A GoalType is a goal type.
@@ -50,9 +50,9 @@ const (
 
 // An SSS is a start of speed section.
 type SSS struct {
-	Type      SSSType   `json:"type"`
-	Direction Direction `json:"direction"`
-	TimeGates []*Time   `json:"timeGates"`
+	Type      SSSType      `json:"type"`
+	Direction Direction    `json:"direction"`
+	TimeGates []*TimeOfDay `json:"timeGates"`
 }
 
 // An SSSType is a start of speed section type.
@@ -66,8 +66,8 @@ const (
 
 // A Takeoff is a takeoff.
 type Takeoff struct {
-	TimeOpen  *Time `json:"timeOpen,omitempty"`
-	TimeClose *Time `json:"timeClose,omitempty"`
+	TimeOpen  *TimeOfDay `json:"timeOpen,omitempty"`
+	TimeClose *TimeOfDay `json:"timeClose,omitempty"`
 }
 
 // A Task is an XC Track task, see
@@ -90,8 +90,8 @@ const (
 	TaskTypeClassic TaskType = "CLASSIC"
 )
 
-// A Time is a time.
-type Time struct {
+// A TimeOfDay is a time of day.
+type TimeOfDay struct {
 	Hour   int
 	Minute int
 	Second int
@@ -124,23 +124,23 @@ type Waypoint struct {
 	AltSmoothed int     `json:"altSmoothed"`
 }
 
-// An errInvalidTime is an invalid time.
-type errInvalidTime string
+// An errInvalidTimeOfDay is an invalid time of day.
+type errInvalidTimeOfDay string
 
-func (e errInvalidTime) Error() string {
+func (e errInvalidTimeOfDay) Error() string {
 	return fmt.Sprintf("invalid time: %q", string(e))
 }
 
 // MarshalJSON implements encoding/json.Marshaler.
-func (t *Time) MarshalJSON() ([]byte, error) {
+func (t *TimeOfDay) MarshalJSON() ([]byte, error) {
 	return []byte(fmt.Sprintf("\"%02d:%02d:%02dZ\"", t.Hour, t.Minute, t.Second)), nil
 }
 
 // UnmarshalJSON implements encoding/json.Unmarshaler.
-func (t *Time) UnmarshalJSON(b []byte) error {
+func (t *TimeOfDay) UnmarshalJSON(b []byte) error {
 	m := timeRegexp.FindSubmatch(b)
 	if m == nil {
-		return errInvalidTime(b)
+		return errInvalidTimeOfDay(b)
 	}
 	t.Hour, _ = strconv.Atoi(string(m[1]))
 	t.Minute, _ = strconv.Atoi(string(m[2]))

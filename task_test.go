@@ -38,7 +38,7 @@ func TestTask(t *testing.T) {
 				SSS: &xctrack.SSS{
 					Type:      xctrack.SSSTypeRace,
 					Direction: xctrack.DirectionEnter,
-					TimeGates: []*xctrack.Time{
+					TimeGates: []*xctrack.TimeOfDay{
 						{Hour: 1, Minute: 2, Second: 3},
 					},
 				},
