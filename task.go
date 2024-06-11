@@ -87,7 +87,8 @@ type TaskType string
 
 // Task types.
 const (
-	TaskTypeClassic TaskType = "CLASSIC"
+	TaskTypeClassic   TaskType = "CLASSIC"
+	TaskTypeWaypoints TaskType = "W"
 )
 
 // A TimeOfDay is a time of day.
