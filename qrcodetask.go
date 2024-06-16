@@ -67,12 +67,14 @@ type QRCodeSSS struct {
 
 // A QRCodeTask is a QR code task.
 type QRCodeTask struct {
-	TaskType   TaskType           `json:"taskType"`
-	Version    int                `json:"version"`
-	Turnpoints []*QRCodeTurnpoint `json:"t"`
-	SSS        *QRCodeSSS         `json:"s,omitempty"`
-	Goal       *QRCodeGoal        `json:"g,omitempty"`
-	EarthModel QRCodeEarthModel   `json:"e"`
+	TaskType     TaskType           `json:"taskType"`
+	Version      int                `json:"version"`
+	Turnpoints   []*QRCodeTurnpoint `json:"t"`
+	TakeoffOpen  *TimeOfDay         `json:"to,omitempty"`
+	TakeoffClose *TimeOfDay         `json:"tc,omitempty"`
+	SSS          *QRCodeSSS         `json:"s,omitempty"`
+	Goal         *QRCodeGoal        `json:"g,omitempty"`
+	EarthModel   QRCodeEarthModel   `json:"e"`
 }
 
 // A QRCodeTaskType is a QR code task type.
@@ -264,6 +266,10 @@ func (t *Task) QRCodeTask() *QRCodeTask {
 		}
 		qrCodeTask.Turnpoints = append(qrCodeTask.Turnpoints, qrCodeTurnpoint)
 	}
+	if t.Takeoff != nil {
+		qrCodeTask.TakeoffOpen = t.Takeoff.TimeOpen
+		qrCodeTask.TakeoffClose = t.Takeoff.TimeClose
+	}
 	if t.SSS != nil {
 		qrCodeTask.SSS = &QRCodeSSS{
 			TimeGates: t.SSS.TimeGates,
@@ -311,6 +317,12 @@ func (q *QRCodeTask) Task() *Task {
 			},
 		}
 		task.Turnpoints = append(task.Turnpoints, turnpoint)
+	}
+	if q.TakeoffOpen != nil || q.TakeoffClose != nil {
+		task.Takeoff = &Takeoff{
+			TimeOpen:  q.TakeoffOpen,
+			TimeClose: q.TakeoffClose,
+		}
 	}
 	if q.SSS != nil {
 		task.SSS = &SSS{

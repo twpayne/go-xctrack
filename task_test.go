@@ -35,6 +35,18 @@ func TestTask(t *testing.T) {
 						},
 					},
 				},
+				Takeoff: &xctrack.Takeoff{
+					TimeOpen: &xctrack.TimeOfDay{
+						Hour:   4,
+						Minute: 5,
+						Second: 6,
+					},
+					TimeClose: &xctrack.TimeOfDay{
+						Hour:   7,
+						Minute: 8,
+						Second: 9,
+					},
+				},
 				SSS: &xctrack.SSS{
 					Type:      xctrack.SSSTypeRace,
 					Direction: xctrack.DirectionEnter,
@@ -46,8 +58,8 @@ func TestTask(t *testing.T) {
 					Type: xctrack.GoalTypeLine,
 				},
 			},
-			jsonStr:   `{"taskType":"CLASSIC","version":1,"earthModel":"WGS84","turnpoints":[{"radius":1,"waypoint":{"name":"D01","lat":1,"lon":2,"altSmoothed":3}}],"sss":{"type":"RACE","direction":"ENTER","timeGates":["01:02:03Z"]},"goal":{"type":"LINE"}}`,
-			qrCodeStr: `XCTSK:{"taskType":"CLASSIC","version":2,"t":[{"z":"_seK_ibEEA","n":"D01"}],"s":{"g":["01:02:03Z"],"d":1,"t":1},"g":{"t":1},"e":0}`,
+			jsonStr:   `{"taskType":"CLASSIC","version":1,"earthModel":"WGS84","turnpoints":[{"radius":1,"waypoint":{"name":"D01","lat":1,"lon":2,"altSmoothed":3}}],"takeoff":{"timeOpen":"04:05:06Z","timeClose":"07:08:09Z"},"sss":{"type":"RACE","direction":"ENTER","timeGates":["01:02:03Z"]},"goal":{"type":"LINE"}}`,
+			qrCodeStr: `XCTSK:{"taskType":"CLASSIC","version":2,"t":[{"z":"_seK_ibEEA","n":"D01"}],"to":"04:05:06Z","tc":"07:08:09Z","s":{"g":["01:02:03Z"],"d":1,"t":1},"g":{"t":1},"e":0}`,
 		},
 	} {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
