@@ -64,6 +64,12 @@ const (
 	SSSTypeElapsedTime SSSType = "ELAPSED-TIME"
 )
 
+// A Takeoff is a takeoff.
+type Takeoff struct {
+	TimeOpen  *TimeOfDay `json:"timeOpen,omitempty"`
+	TimeClose *TimeOfDay `json:"timeClose,omitempty"`
+}
+
 // A Task is an XC Track task, see
 // http://xctrack.org/Competition_Interfaces.html.
 type Task struct {
@@ -71,6 +77,7 @@ type Task struct {
 	Version    int          `json:"version"`
 	EarthModel EarthModel   `json:"earthModel,omitempty"`
 	Turnpoints []*Turnpoint `json:"turnpoints"`
+	Takeoff    *Takeoff     `json:"takeoff,omitempty"`
 	SSS        *SSS         `json:"sss,omitempty"`
 	Goal       *Goal        `json:"goal,omitempty"`
 }
