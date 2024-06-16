@@ -12,7 +12,6 @@ linters:
   - exportloopref
   - forbidigo
   - forcetypeassert
-  - funlen
   - gochecknoinits
   - gocognit
   - goconst
@@ -58,6 +57,7 @@ linters:
   disable:
   - cyclop
   - depguard
+  - funlen
   - gci
   - gochecknoglobals
   - gomnd
