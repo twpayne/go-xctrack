@@ -1,92 +1,102 @@
+version: "2"
 linters:
   enable:
-  - asciicheck
-  - bodyclose
-  - dogsled
-  - dupl
-  - durationcheck
-  - err113
-  - errcheck
-  - errorlint
-  - exhaustive
-  - exportloopref
-  - forbidigo
-  - forcetypeassert
-  - gochecknoinits
-  - gocognit
-  - goconst
-  - gocritic
-  - gocyclo
-  - godot
-  - godox
-  - gofmt
-  - gofumpt
-  - goheader
-  - goimports
-  - gomoddirectives
-  - gomodguard
-  - goprintffuncname
-  - gosec
-  - gosimple
-  - govet
-  - importas
-  - ineffassign
-  - makezero
-  - misspell
-  - nakedret
-  - nilerr
-  - noctx
-  - nolintlint
-  - prealloc
-  - predeclared
-  - promlinter
-  - revive
-  - rowserrcheck
-  - sqlclosecheck
-  - staticcheck
-  - stylecheck
-  - tagliatelle
-  - testpackage
-  - thelper
-  - typecheck
-  - unconvert
-  - unparam
-  - unused
-  - wastedassign
-  - whitespace
-  disable:
-  - cyclop
-  - depguard
-  - funlen
-  - gci
-  - gochecknoglobals
-  - gomnd
-  - lll
-  - nestif
-  - nlreturn
-  - paralleltest
-  - tparallel
-  - wrapcheck
-  - wsl
-
-linters-settings:
-  forbidigo:
-    forbid:
-    - ^fmt\.Print.*$
-    - ^ioutil\..*$
-    - ^os\.(DirEntry|FileInfo|FileMode|Is.*|Mode.*)$
-  gofumpt:
-    extra-rules: true
-  goimports:
-    local-prefixes: github.com/twpayne/go-xctrack
-  misspell:
-    locale: US
-
-issues:
-  exclude-rules:
-  - linters:
+    - asciicheck
+    - bodyclose
+    - dogsled
+    - dupl
+    - durationcheck
     - err113
-    text: "do not define dynamic errors, use wrapped static errors instead"
-  - linters:
+    - errorlint
+    - exhaustive
     - forbidigo
-    path: ^cmd/xctrack/
+    - forcetypeassert
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - importas
+    - makezero
+    - misspell
+    - nakedret
+    - nilerr
+    - noctx
+    - nolintlint
+    - prealloc
+    - predeclared
+    - promlinter
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - tagliatelle
+    - testpackage
+    - thelper
+    - unconvert
+    - unparam
+    - wastedassign
+    - whitespace
+  disable:
+    - cyclop
+    - depguard
+    - funlen
+    - gochecknoglobals
+    - lll
+    - mnd
+    - nestif
+    - nlreturn
+    - paralleltest
+    - tparallel
+    - wrapcheck
+    - wsl
+  settings:
+    forbidigo:
+      forbid:
+        - pattern: ^fmt\.Print.*$
+        - pattern: ^ioutil\..*$
+        - pattern: ^os\.(DirEntry|FileInfo|FileMode|Is.*|Mode.*)$
+    misspell:
+      locale: US
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - err113
+        text: do not define dynamic errors, use wrapped static errors instead
+      - linters:
+          - forbidigo
+        path: ^cmd/xctrack/
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gofumpt:
+      extra-rules: true
+    goimports:
+      local-prefixes:
+        - github.com/twpayne/go-xctrack
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

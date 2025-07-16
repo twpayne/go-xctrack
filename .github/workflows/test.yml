@@ -10,10 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7
+    - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
       with:
         go-version: oldstable
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
     - name: build
       run: go build ./...
     - name: test
