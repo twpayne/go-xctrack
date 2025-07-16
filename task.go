@@ -52,7 +52,7 @@ const (
 type SSS struct {
 	Type      SSSType      `json:"type"`
 	Direction Direction    `json:"direction"`
-	TimeGates []*TimeOfDay `json:"timeGates"`
+	TimeGates []*TimeOfDay `json:"timeGates,omitempty"`
 }
 
 // An SSSType is a start of speed section type.
@@ -122,7 +122,7 @@ type Waypoint struct {
 	Description string  `json:"description,omitempty"`
 	Lat         float64 `json:"lat"`
 	Lon         float64 `json:"lon"`
-	AltSmoothed int     `json:"altSmoothed"`
+	AltSmoothed int     `json:"altSmoothed,omitzero"`
 }
 
 // An errInvalidTimeOfDay is an invalid time of day.
