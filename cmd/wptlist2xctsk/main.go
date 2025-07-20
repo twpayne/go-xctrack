@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -19,7 +20,7 @@ type WptList struct {
 	Version  int    `json:"version"`
 }
 
-func run() error {
+func run(ctx context.Context) error {
 	euDEM := flag.String("eu_dem-path", os.Getenv("EU_DEM_PATH"), "path to EU DEM data")
 	flag.Parse()
 
@@ -40,7 +41,7 @@ func run() error {
 	for i, point := range wptList.Points {
 		coords[i] = []float64{point.Lon, point.Lat}
 	}
-	elevations, err := elevationService.Elevation4326(coords)
+	elevations, err := elevationService.Elevation4326(ctx, coords)
 	if err != nil {
 		return nil
 	}
@@ -123,7 +124,7 @@ func run() error {
 }
 
 func main() {
-	if err := run(); err != nil {
+	if err := run(context.Background()); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
