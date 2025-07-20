@@ -2,6 +2,8 @@ module github.com/twpayne/go-xctrack/cmd/wptlist2xctsk
 
 go 1.24.5
 
+tool github.com/twpayne/go-xctrack/cmd/wptlist2xctsk
+
 require (
 	github.com/twpayne/go-elevation v0.0.0-20250720200255-c84052ac7528
 	github.com/twpayne/go-xctrack v1.2.0
