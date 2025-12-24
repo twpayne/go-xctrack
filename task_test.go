@@ -10,7 +10,7 @@ import (
 
 	"github.com/alecthomas/assert/v2"
 
-	xctrack "github.com/twpayne/go-xctrack"
+	xctrack "github.com/twpayne/go-xctrack/v2"
 )
 
 func TestTask(t *testing.T) {

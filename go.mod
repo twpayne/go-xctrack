@@ -1,8 +1,8 @@
-module github.com/twpayne/go-xctrack
+module github.com/twpayne/go-xctrack/v2
 
 go 1.24
 
-tool github.com/twpayne/go-xctrack/cmd/xctrack
+tool github.com/twpayne/go-xctrack/v2/cmd/xctrack
 
 require (
 	github.com/alecthomas/assert/v2 v2.10.0

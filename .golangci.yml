@@ -144,7 +144,7 @@ formatters:
       extra-rules: true
     goimports:
       local-prefixes:
-        - github.com/twpayne/go-xctrack
+        - github.com/twpayne/go-xctrack/v2
   exclusions:
     generated: lax
     paths:

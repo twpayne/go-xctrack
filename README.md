@@ -1,6 +1,6 @@
 # go-xctrack
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/twpayne/go-xctrack)](https://pkg.go.dev/github.com/twpayne/go-xctrack)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/twpayne/go-xctrack/v2)](https://pkg.go.dev/github.com/twpayne/go-xctrack/v2)
 
 Package xctrack implements [XCTrack](http://xctrack.org/)'s [task
 format](http://xctrack.org/Competition_Interfaces.html).

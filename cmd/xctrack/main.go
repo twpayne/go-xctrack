@@ -10,7 +10,7 @@ import (
 	"github.com/skip2/go-qrcode"
 	"github.com/twpayne/go-kml/v3"
 
-	"github.com/twpayne/go-xctrack"
+	"github.com/twpayne/go-xctrack/v2"
 )
 
 var format = flag.String("format", "json", "format")
