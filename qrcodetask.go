@@ -118,13 +118,13 @@ var (
 	errTrailingBytes              = errors.New("trailing bytes")
 )
 
-// An errInvalidQRCodeTurnpointZ is an invalid QR code turnpoint Z error.
-type errInvalidQRCodeTurnpointZ struct {
+// An invalidQRCodeTurnpointZError is an invalid QR code turnpoint Z error.
+type invalidQRCodeTurnpointZError struct {
 	Value []byte
 	Err   error
 }
 
-func (e errInvalidQRCodeTurnpointZ) Error() string {
+func (e invalidQRCodeTurnpointZError) Error() string {
 	return fmt.Sprintf("invalid QR code turnpoint z: %q: %v", string(e.Value), e.Err)
 }
 
@@ -190,7 +190,7 @@ func (z *QRCodeTurnpointZ) MarshalJSON() ([]byte, error) {
 func (z *QRCodeTurnpointZ) UnmarshalJSON(value []byte) error {
 	b := value
 	if len(b) == 0 || b[0] != '"' {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   errExpectedOpeningDoubleQuote,
 		}
@@ -198,41 +198,41 @@ func (z *QRCodeTurnpointZ) UnmarshalJSON(value []byte) error {
 	b = b[1:]
 	lon, b, err := polyline.DecodeInt(b)
 	if err != nil {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   err,
 		}
 	}
 	lat, b, err := polyline.DecodeInt(b)
 	if err != nil {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   err,
 		}
 	}
 	alt, b, err := polyline.DecodeInt(b)
 	if err != nil {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   err,
 		}
 	}
 	radius, b, err := polyline.DecodeInt(b)
 	if err != nil {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   err,
 		}
 	}
 	if len(b) == 0 || b[0] != '"' {
-		return errInvalidQRCodeTurnpointZ{
+		return invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   errExpectedClosingDoubleQuote,
 		}
 	}
 	b = b[1:]
 	if len(b) != 0 {
-		return &errInvalidQRCodeTurnpointZ{
+		return &invalidQRCodeTurnpointZError{
 			Value: value,
 			Err:   errTrailingBytes,
 		}

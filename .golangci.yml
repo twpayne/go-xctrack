@@ -1,20 +1,39 @@
 version: "2"
 linters:
   enable:
+    - arangolint
+    - asasalint
     - asciicheck
+    - bidichk
     - bodyclose
+    - containedctx
+    - contextcheck
+    - copyloopvar
+    - decorder
     - dogsled
     - dupl
+    - dupword
     - durationcheck
+    - embeddedstructfieldcheck
     - err113
+    - errchkjson
+    - errname
     - errorlint
     - exhaustive
+    - exptostd
+    - fatcontext
     - forbidigo
     - forcetypeassert
+    - funcorder
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    - gochecknoglobals
     - gochecknoinits
+    - gochecksumtype
     - goconst
     - gocritic
     - gocyclo
+    - godoclint
     - godot
     - godox
     - goheader
@@ -22,30 +41,60 @@ linters:
     - gomodguard
     - goprintffuncname
     - gosec
+    - gosmopolitan
+    - grouper
+    - iface
     - importas
+    - inamedparam
+    - interfacebloat
+    - intrange
+    - iotamixing
+    - ireturn
+    - loggercheck
     - makezero
+    - mirror
     - misspell
+    - modernize
+    - musttag
     - nakedret
     - nilerr
+    - nilnesserr
+    - nilnil
     - noctx
     - nolintlint
+    - nonamedreturns
+    - nosprintfhostport
+    - perfsprint
     - prealloc
     - predeclared
     - promlinter
+    - protogetter
+    - reassign
+    - recvcheck
     - revive
     - rowserrcheck
+    - sloglint
+    - spancheck
     - sqlclosecheck
     - staticcheck
+    - tagalign
     - tagliatelle
+    - testableexamples
+    - testifylint
     - testpackage
     - thelper
     - unconvert
     - unparam
+    - unqueryvet
+    - usestdlibvars
+    - usetesting
     - wastedassign
     - whitespace
   disable:
+    - canonicalheader
     - cyclop
     - depguard
+    - exhaustruct
     - funlen
     - gochecknoglobals
     - gocognit
@@ -53,10 +102,12 @@ linters:
     - mnd
     - nestif
     - nlreturn
+    - noinlineerr
     - paralleltest
     - tparallel
+    - varnamelen
     - wrapcheck
-    - wsl
+    - wsl_v5
   settings:
     forbidigo:
       forbid:

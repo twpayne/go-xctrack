@@ -133,23 +133,23 @@ type WaypointList struct {
 	Points   []Waypoint `json:"points"`
 }
 
-// An errInvalidTimeOfDay is an invalid time of day.
-type errInvalidTimeOfDay string
+// An invalidTimeOfDayError is an invalid time of day.
+type invalidTimeOfDayError string
 
-func (e errInvalidTimeOfDay) Error() string {
+func (e invalidTimeOfDayError) Error() string {
 	return fmt.Sprintf("invalid time: %q", string(e))
 }
 
 // MarshalJSON implements encoding/json.Marshaler.
 func (t *TimeOfDay) MarshalJSON() ([]byte, error) {
-	return []byte(fmt.Sprintf("\"%02d:%02d:%02dZ\"", t.Hour, t.Minute, t.Second)), nil
+	return fmt.Appendf(make([]byte, 0, 10), "\"%02d:%02d:%02dZ\"", t.Hour, t.Minute, t.Second), nil
 }
 
 // UnmarshalJSON implements encoding/json.Unmarshaler.
 func (t *TimeOfDay) UnmarshalJSON(b []byte) error {
 	m := timeRegexp.FindSubmatch(b)
 	if m == nil {
-		return errInvalidTimeOfDay(b)
+		return invalidTimeOfDayError(b)
 	}
 	t.Hour, _ = strconv.Atoi(string(m[1]))
 	t.Minute, _ = strconv.Atoi(string(m[2]))
