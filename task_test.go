@@ -71,13 +71,17 @@ func TestTask(t *testing.T) {
 			assert.NoError(t, err)
 			assert.Equal(t, tc.qrCodeStr, strings.TrimSpace(actualQRCodeStr))
 
-			actualTask, err := xctrack.ParseTask([]byte(tc.jsonStr))
+			actual, err := xctrack.ParseTask([]byte(tc.jsonStr))
 			assert.NoError(t, err)
+			actualTask, ok := actual.(*xctrack.Task)
+			assert.True(t, ok)
 			assert.Equal(t, tc.task, actualTask)
 
-			actualTask, err = xctrack.ParseTask([]byte(tc.qrCodeStr))
+			actualQRCode, err := xctrack.ParseTask([]byte(tc.qrCodeStr))
 			assert.NoError(t, err)
-			assert.Equal(t, tc.task, actualTask)
+			actualQRCodeTask, ok := actualQRCode.(*xctrack.Task)
+			assert.True(t, ok)
+			assert.Equal(t, tc.task, actualQRCodeTask)
 		})
 	}
 }

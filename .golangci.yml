@@ -12,7 +12,6 @@ linters:
     - forbidigo
     - forcetypeassert
     - gochecknoinits
-    - gocognit
     - goconst
     - gocritic
     - gocyclo
@@ -49,6 +48,7 @@ linters:
     - depguard
     - funlen
     - gochecknoglobals
+    - gocognit
     - lll
     - mnd
     - nestif

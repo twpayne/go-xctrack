@@ -87,8 +87,9 @@ type TaskType string
 
 // Task types.
 const (
-	TaskTypeClassic   TaskType = "CLASSIC"
-	TaskTypeWaypoints TaskType = "W"
+	TaskTypeClassic      TaskType = "CLASSIC"
+	TaskTypeWaypoints    TaskType = "W"
+	TaskTypeWaypointList TaskType = "WPTLIST"
 )
 
 // A TimeOfDay is a time of day.
@@ -123,6 +124,13 @@ type Waypoint struct {
 	Lat         float64 `json:"lat"`
 	Lon         float64 `json:"lon"`
 	AltSmoothed int     `json:"altSmoothed,omitzero"`
+}
+
+// A WaypointList is a list of Waypoints.
+type WaypointList struct {
+	TaskType TaskType   `json:"taskType"`
+	Version  int        `json:"version"`
+	Points   []Waypoint `json:"points"`
 }
 
 // An errInvalidTimeOfDay is an invalid time of day.

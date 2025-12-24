@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"image"
 	_ "image/gif"  // Parse GIF images.
 	_ "image/jpeg" // Parse JPEG images.
@@ -18,35 +19,51 @@ var (
 )
 
 // ParseTask parses a Task from data.
-func ParseTask(data []byte) (*Task, error) {
-	if len(data) == 0 {
+func ParseTask(data []byte) (any, error) {
+	switch {
+	case len(data) == 0:
 		return nil, errEmptyInput
-	}
-
-	if bytes.HasPrefix(data, []byte(QRCodeScheme)) {
-		var qrCodeTask QRCodeTask
-		if err := json.Unmarshal(data[len(QRCodeScheme):], &qrCodeTask); err == nil {
-			return qrCodeTask.Task(), nil
+	case bytes.HasPrefix(data, []byte{'{'}):
+		var taskType struct {
+			TaskType TaskType `json:"taskType"`
 		}
-	}
-
-	var task Task
-	if err := json.Unmarshal(data, &task); err == nil {
-		return &task, nil
-	}
-
-	if img, _, err := image.Decode(bytes.NewReader(data)); err == nil {
-		if qrCodes, err := goqr.Recognize(img); err == nil {
-			for _, qrCode := range qrCodes {
-				if bytes.HasPrefix(qrCode.Payload, []byte(QRCodeScheme)) {
-					var qrCodeTask QRCodeTask
-					if err := json.Unmarshal(qrCode.Payload[len(QRCodeScheme):], &qrCodeTask); err == nil {
-						return qrCodeTask.Task(), nil
+		switch err := json.Unmarshal(data, &taskType); {
+		case err != nil:
+			return nil, err
+		case taskType.TaskType == TaskTypeClassic:
+			var task Task
+			if err := json.Unmarshal(data, &task); err != nil {
+				return nil, err
+			}
+			return &task, nil
+		case taskType.TaskType == TaskTypeWaypointList:
+			var waypointList WaypointList
+			if err := json.Unmarshal(data, &waypointList); err != nil {
+				return nil, err
+			}
+			return &waypointList, nil
+		default:
+			return nil, fmt.Errorf("%s: unknown task type", taskType.TaskType)
+		}
+	case bytes.HasPrefix(data, []byte(QRCodeScheme)):
+		var qrCodeTask QRCodeTask
+		if err := json.Unmarshal(data[len(QRCodeScheme):], &qrCodeTask); err != nil {
+			return nil, err
+		}
+		return qrCodeTask.Task(), nil
+	default:
+		if img, _, err := image.Decode(bytes.NewReader(data)); err == nil {
+			if qrCodes, err := goqr.Recognize(img); err == nil {
+				for _, qrCode := range qrCodes {
+					if bytes.HasPrefix(qrCode.Payload, []byte(QRCodeScheme)) {
+						var qrCodeTask QRCodeTask
+						if err := json.Unmarshal(qrCode.Payload[len(QRCodeScheme):], &qrCodeTask); err == nil {
+							return qrCodeTask.Task(), nil
+						}
 					}
 				}
 			}
 		}
+		return nil, errInvalidFormat
 	}
-
-	return nil, errInvalidFormat
 }
