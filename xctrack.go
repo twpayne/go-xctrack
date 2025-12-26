@@ -2,6 +2,7 @@ package xctrack
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -9,6 +10,8 @@ import (
 	_ "image/gif"  // Parse GIF images.
 	_ "image/jpeg" // Parse JPEG images.
 	_ "image/png"  // Parse PNG images.
+	"io"
+	"net/http"
 
 	"github.com/liyue201/goqr"
 )
@@ -17,6 +20,25 @@ var (
 	errEmptyInput    = errors.New("empty input")
 	errInvalidFormat = errors.New("invalid format")
 )
+
+// LoadTaskFromCode loads a task from a code.
+func LoadTaskFromCode(ctx context.Context, code string) (any, error) {
+	url := "https://tools.xcontest.org/api/xctsk/load/" + code
+	request, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	response, err := http.DefaultClient.Do(request)
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+	data, err := io.ReadAll(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return ParseTask(data)
+}
 
 // ParseTask parses a Task from data.
 func ParseTask(data []byte) (any, error) {

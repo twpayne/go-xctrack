@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -13,7 +14,10 @@ import (
 	"github.com/twpayne/go-xctrack/v2"
 )
 
-var format = flag.String("format", "json", "format")
+var (
+	code   = flag.String("code", "", "task code")
+	format = flag.String("format", "json", "format")
+)
 
 func taskToKML(t *xctrack.Task) *kml.KMLElement {
 	coordinates := make([]kml.Coordinate, len(t.Turnpoints))
@@ -56,15 +60,26 @@ func waypointListToKML(l *xctrack.WaypointList) *kml.KMLElement {
 }
 
 func run() error {
+	ctx := context.Background()
+
 	flag.Parse()
 
-	data, err := io.ReadAll(os.Stdin)
-	if err != nil {
-		return err
-	}
-	task, err := xctrack.ParseTask(data)
-	if err != nil {
-		return err
+	var task any
+	if *code != "" {
+		var err error
+		task, err = xctrack.LoadTaskFromCode(ctx, *code)
+		if err != nil {
+			return err
+		}
+	} else {
+		data, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			return err
+		}
+		task, err = xctrack.ParseTask(data)
+		if err != nil {
+			return err
+		}
 	}
 
 	switch task := task.(type) {
