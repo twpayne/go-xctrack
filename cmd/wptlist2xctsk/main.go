@@ -1,5 +1,7 @@
 package main
 
+// FIXME make elevations optional
+
 import (
 	"context"
 	"encoding/json"
