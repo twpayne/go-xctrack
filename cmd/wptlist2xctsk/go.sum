@@ -29,8 +29,10 @@ github.com/twpayne/go-polyline v1.1.1 h1:/tSF1BR7rN4HWj4XKqvRUNrCiYVMCvywxTFVofv
 github.com/twpayne/go-polyline v1.1.1/go.mod h1:ybd9IWWivW/rlXPXuuckeKUyF3yrIim+iqA7kSl4NFY=
 github.com/twpayne/go-proj/v11 v11.0.0 h1:jkGRE2DOwxhbn2hPnps1wNepdCgA8JB/K8rJosVR2jM=
 github.com/twpayne/go-proj/v11 v11.0.0/go.mod h1:2qEvCqcSQqaKRxHc8K6F5THAzS/SVknfWVPnTHFqE3M=
-golang.org/x/image v0.29.0 h1:HcdsyR4Gsuys/Axh0rDEmlBmB68rW1U9BUdB3UVHsas=
-golang.org/x/image v0.29.0/go.mod h1:RVJROnf3SLK8d26OW91j4FrIHGbsJ8QnbEocVTOWQDA=
+github.com/twpayne/go-xctrack/v2 v2.1.0 h1:ElkNrVbIJlVi1uw2U0CvN5YA4C3DNCOGyMx7nvBZzhA=
+github.com/twpayne/go-xctrack/v2 v2.1.0/go.mod h1:b76PH3cGq64VQP9taI+B8OKwm0yhn1C6kIt/xfx9hDg=
+golang.org/x/image v0.38.0 h1:5l+q+Y9JDC7mBOMjo4/aPhMDcxEptsX+Tt3GgRQRPuE=
+golang.org/x/image v0.38.0/go.mod h1:/3f6vaXC+6CEanU4KJxbcUZyEePbyKbaLoDOe4ehFYY=
 golang.org/x/sys v0.34.0 h1:H5Y5sJ2L2JRdyv7ROF1he/lPdvFsd0mJHFw2ThKHxLA=
 golang.org/x/sys v0.34.0/go.mod h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=

@@ -1,6 +1,6 @@
 module github.com/twpayne/go-xctrack/cmd/wptlist2xctsk
 
-go 1.24.5
+go 1.25.0
 
 tool github.com/twpayne/go-xctrack/cmd/wptlist2xctsk
 
@@ -15,7 +15,8 @@ require (
 	github.com/maypok86/otter/v2 v2.2.0 // indirect
 	github.com/twpayne/go-polyline v1.1.1 // indirect
 	github.com/twpayne/go-proj/v11 v11.0.0 // indirect
-	golang.org/x/image v0.29.0 // indirect
+	github.com/twpayne/go-xctrack/v2 v2.1.0 // indirect
+	golang.org/x/image v0.38.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 )
 
