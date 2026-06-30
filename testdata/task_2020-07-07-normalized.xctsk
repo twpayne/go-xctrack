@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "taskType": "CLASSIC",
+  "turnpoints": [
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 8.053,
+        "lat": 46.65939,
+        "altSmoothed": 2175,
+        "name": "TP01",
+        "description": "First"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.99956,
+        "lat": 46.6748,
+        "altSmoothed": 2648,
+        "name": "TP02",
+        "description": "Faulhorn"
+      },
+      "type": "SSS"
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.86898,
+        "lat": 46.61851,
+        "altSmoothed": 1946,
+        "name": "TP31",
+        "description": "Lobhornhütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.65139,
+        "lat": 46.645,
+        "altSmoothed": 2320,
+        "name": "TP33",
+        "description": "Niesen"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.5457,
+        "lat": 46.49877,
+        "altSmoothed": 1930,
+        "name": "TP34",
+        "description": "Tschentenalp"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.40913,
+        "lat": 46.42877,
+        "altSmoothed": 1942,
+        "name": "TP41",
+        "description": "Bettelberg"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.46781,
+        "lat": 46.38301,
+        "altSmoothed": 2779,
+        "name": "TP43",
+        "description": "Wildstrubelhütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.69736,
+        "lat": 46.48681,
+        "altSmoothed": 1895,
+        "name": "TP49",
+        "description": "Doldenhornhütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.77164,
+        "lat": 46.51016,
+        "altSmoothed": 2826,
+        "name": "TP51",
+        "description": "Blüemlisalphütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.8855,
+        "lat": 46.51815,
+        "altSmoothed": 1773,
+        "name": "TP25",
+        "description": "Obersteinberg"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.89222,
+        "lat": 46.49916,
+        "altSmoothed": 2252,
+        "name": "TP23",
+        "description": "Schmadrihütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.97471,
+        "lat": 46.57469,
+        "altSmoothed": 2325,
+        "name": "TP17",
+        "description": "Eigergletscher"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 8.06001,
+        "lat": 46.60046,
+        "altSmoothed": 1734,
+        "name": "TP16",
+        "description": "Bäregg"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 8.10204,
+        "lat": 46.65556,
+        "altSmoothed": 1961,
+        "name": "TP03",
+        "description": "Grosse Scheidegg"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.83821,
+        "lat": 46.54519,
+        "altSmoothed": 2037,
+        "name": "TP30",
+        "description": "Rotstockhütte"
+      }
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 8.0965,
+        "lat": 46.62513,
+        "altSmoothed": 2300,
+        "name": "TP14",
+        "description": "Glecksteinhütte"
+      },
+      "type": "ESS"
+    },
+    {
+      "radius": 1000,
+      "waypoint": {
+        "lon": 7.96203,
+        "lat": 46.58516,
+        "altSmoothed": 2061,
+        "name": "TP18",
+        "description": "Kleine Scheidegg"
+      }
+    }
+  ],
+  "sss": {
+    "type": "RACE",
+    "direction": "ENTER",
+    "timeGates": [
+      "10:00:00Z"
+    ]
+  },
+  "goal": {
+    "type": "CYLINDER",
+    "deadline": "21:00:00Z"
+  },
+  "earthModel": "WGS84"
+}

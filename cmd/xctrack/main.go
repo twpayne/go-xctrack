@@ -107,6 +107,24 @@ func run() error {
 			}
 			_, err = os.Stdout.WriteString(s)
 			return err
+		case "xctaskz":
+			s, err := task.QRCodeTask().XCTSKZ()
+			if err != nil {
+				return err
+			}
+			_, err = os.Stdout.WriteString(s)
+			return err
+		case "xctaskz-png":
+			s, err := task.QRCodeTask().XCTSKZ()
+			if err != nil {
+				return err
+			}
+			png, err := qrcode.Encode(s, qrcode.Medium, 1024)
+			if err != nil {
+				return err
+			}
+			_, err = os.Stdout.Write(png)
+			return err
 		default:
 			return fmt.Errorf("%s: invalid format", *format)
 		}

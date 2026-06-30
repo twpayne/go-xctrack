@@ -19,3 +19,17 @@ func TestQRCodeTask(t *testing.T) {
 	_, err = task.QRCodeTask().String()
 	assert.NoError(t, err)
 }
+
+func TestQRCodeTaskZString(t *testing.T) {
+	data, err := os.ReadFile("testdata/task_2020-07-07-normalized.xctsk")
+	assert.NoError(t, err)
+	taskAny, err := xctrack.ParseTask(data)
+	assert.NoError(t, err)
+	task, ok := taskAny.(*xctrack.Task)
+	assert.True(t, ok)
+	xctskz, err := task.QRCodeTask().XCTSKZ()
+	assert.NoError(t, err)
+	parsedTask, err := xctrack.ParseTask([]byte(xctskz))
+	assert.NoError(t, err)
+	assert.Equal(t, taskAny, parsedTask)
+}

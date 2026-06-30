@@ -1,6 +1,9 @@
 package xctrack
 
 import (
+	"bytes"
+	"compress/zlib"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -13,6 +16,7 @@ import (
 // Constants.
 const (
 	QRCodeScheme      = "XCTSK:"
+	QRZCodeScheme     = "XCTSKZ:"
 	QRCodeTaskVersion = 2
 )
 
@@ -336,6 +340,22 @@ func (q *QRCodeTask) Task() *Task {
 		}
 	}
 	return task
+}
+
+func (q *QRCodeTask) XCTSKZ() (string, error) {
+	data, err := json.Marshal(q)
+	if err != nil {
+		return "", err
+	}
+	var compressedData bytes.Buffer
+	zlibWriter := zlib.NewWriter(&compressedData)
+	if _, err := zlibWriter.Write(data); err != nil {
+		return "", err
+	}
+	if err := zlibWriter.Close(); err != nil {
+		return "", err
+	}
+	return QRZCodeScheme + base64.StdEncoding.EncodeToString(compressedData.Bytes()), nil
 }
 
 func quote(data []byte) []byte {

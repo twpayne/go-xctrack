@@ -2,7 +2,9 @@ package xctrack
 
 import (
 	"bytes"
+	"compress/zlib"
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -70,6 +72,26 @@ func ParseTask(data []byte) (any, error) {
 	case bytes.HasPrefix(data, []byte(QRCodeScheme)):
 		var qrCodeTask QRCodeTask
 		if err := json.Unmarshal(data[len(QRCodeScheme):], &qrCodeTask); err != nil {
+			return nil, err
+		}
+		return qrCodeTask.Task(), nil
+	case bytes.HasPrefix(data, []byte(QRZCodeScheme)):
+		compressedBase64Data := bytes.TrimPrefix(data, []byte(QRZCodeScheme))
+		compressedData := make([]byte, base64.StdEncoding.DecodedLen(len(compressedBase64Data)))
+		n, err := base64.StdEncoding.Decode(compressedData, compressedBase64Data)
+		if err != nil {
+			return nil, err
+		}
+		uncompressedReader, err := zlib.NewReader(bytes.NewReader(compressedData[:n]))
+		if err != nil {
+			return nil, err
+		}
+		uncompressedData, err := io.ReadAll(uncompressedReader)
+		if err != nil {
+			return nil, err
+		}
+		var qrCodeTask QRCodeTask
+		if err := json.Unmarshal(uncompressedData, &qrCodeTask); err != nil {
 			return nil, err
 		}
 		return qrCodeTask.Task(), nil
